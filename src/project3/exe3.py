@@ -1,19 +1,35 @@
 def multiplication(m1, m2):
-    l2 = len(m2[0])
 
-    result = []
-    for s_m1 in m1:
-        s_result = []
-        for i_m2 in range(l2):
-            e = 0
-            i_m1 = -1
-            for v_m1 in s_m1:
-                i_m1 += 1
-                e += v_m1 * m2[i_m1][i_m2]
-            s_result.append(e)
-        result.append(s_result)
+    # Проверка
+    # на пустоту
+    if not m1 or not m2:
+        print("Одна или несколько матриц пустые")
+        return
+    
+    # проверка количества столбцов в матрице
+    check_column_count = lambda m: all(len(r) == len(m[0]) for r in m)
+    if not check_column_count(m1) or not check_column_count(m2):
+        print("Количество столбцов должно быть одинаковым для всех строк")
+        return
+        
+    # на количество строк m1 и столбцов m2
+    if len(m1[0]) != len(m2):
+        print("Число столбцов матрицы 1 не равно числу строк матрицы 2")
+        return
+
+    # Создаем матрицу
+    col_len = len(m2[0])
+    result = [[0] * col_len for _ in range(len(m1))]
+    
+    # Умножаем
+    for i in range(len(m1)):
+        for j in range(len(m2[0])):
+            for k in range(len(m2)):
+                result[i][j] += m1[i][k] * m2[k][j]
     
     return result
 
+print(multiplication([],[]))
+print(multiplication([[1, 2], [3, 4]],[[5], [8,2]]))
 print(multiplication([[1, 2], [3, 4]],[[5, 6], [7, 8]]))
 print(multiplication([[1, 2], [3, 4]],[[5], [8]]))
