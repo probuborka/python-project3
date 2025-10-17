@@ -6,8 +6,8 @@ def multiplication(m1, m2):
         print("Одна или несколько матриц пустые")
         return
     
-    # проверка количества столбцов в матрице
-    check_column_count = lambda m: all(len(r) == len(m[0]) for r in m)
+    # на количество столбцов в матрице
+    check_column_count = lambda m: (lambda first_len=len(m[0]) : all(len(r) == first_len for r in m))()
     if not check_column_count(m1) or not check_column_count(m2):
         print("Количество столбцов должно быть одинаковым для всех строк")
         return
