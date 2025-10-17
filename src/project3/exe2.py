@@ -12,8 +12,8 @@ def swap(list1, list2):
     list2[:] = list1[:len1]
     del list1[:len1]
 
-p = print_result(swap)
-p([], [])
-p([1, 2, 3], [1, 2, 3, 7, 4, 3])
-p([1, 2, 3], [4, 5, 6])
+print_swap = print_result(swap)
+print_swap([], [])
+print_swap([1, 2, 3], [1, 2, 3, 7, 4, 3])
+print_swap([1, 2, 3], [4, 5, 6])
 
